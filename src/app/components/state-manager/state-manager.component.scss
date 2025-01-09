@@ -188,17 +188,18 @@
       .states-container {
         border-radius: 10px;
         background-color: #f4f4f4;
-        padding: 10px 5px;
+        padding: 15px 8px;
         display: flex;
         flex-direction: column;
-        gap: 7px;
-        max-height: 200px;
+        gap: 12px;
+        max-height: 250px;
+        overflow-y: auto;
 
         .state-box {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 0 15px;
+          padding: 7px 15px;
           border-radius: 10px;
           height: 35px;
           background-color: white;
@@ -245,6 +246,15 @@
             }
           }
         }
+      }
+      .states-container::-webkit-scrollbar {
+        width: 7.5px;
+        background-color: #ececec;
+      }
+
+      .states-container::-webkit-scrollbar-thumb {
+        background-color: #9b9b9b;
+        border-radius: 3px;
       }
     }
   }

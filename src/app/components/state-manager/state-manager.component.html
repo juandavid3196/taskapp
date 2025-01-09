@@ -4,7 +4,7 @@
       <span class="close-circle">
         <mat-icon class="btn-close" (click)="onClose()">close</mat-icon>
       </span>
-      <span class="form-title">Gestionar estados</span>
+      <span class="form-title">Gestionar estados adicionales</span>
     </div>
     <div class="main-section">
       <div class="form-section">
@@ -12,8 +12,10 @@
           <div class="form-box">
             <input type="text" name="title" formControlName="title" />
           </div>
-          <button class="btn btn-add" type="submit">Agregar</button>
-          <span class="cancel-btn">
+          <button class="btn btn-add" type="submit">
+            {{ update ? "Editar" : "Agregar" }}
+          </button>
+          <span class="cancel-btn" *ngIf="update" (click)="cleanVariables()">
             <mat-icon>close</mat-icon>
           </span>
         </form>
@@ -33,14 +35,17 @@
           exceder los 20 caracteres.
         </div>
       </div>
-      <div class="states-container">
+      <div class="states-container" *ngIf="states.length > 0">
         <div class="state-box" *ngFor="let state of states">
           <span class="state-title">{{ state.title }}</span>
           <div class="state-actions">
-            <span class="action-box edit-btn">
+            <span class="action-box edit-btn" (click)="onUpdateState(state)">
               <img src="assets/icons/edit-icon.svg" alt="" />
             </span>
-            <span class="action-box delete-btn">
+            <span
+              class="action-box delete-btn"
+              (click)="onEliminateState(state)"
+            >
               <img src="assets/icons/delete-icon.svg" alt="" />
             </span>
           </div>
