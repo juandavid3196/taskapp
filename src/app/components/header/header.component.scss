@@ -3,7 +3,8 @@
   flex-direction: column;
   padding: 30px 40px 0 40px;
   border-bottom: 1px solid #d3d3d3;
-  gap: 10px;
+  gap: 15px;
+  height: 125px;
 
   .header-top {
     display: flex;
@@ -23,10 +24,10 @@
       flex: max-content;
 
       input {
-        width: 100%;
+        width: -webkit-fill-available;
         position: relative;
         height: inherit;
-        padding: 0 10px;
+        padding-left: 10px;
         border-radius: 50px;
         font-size: 15px;
         border: 1px solid #ccc;
@@ -100,10 +101,9 @@
     gap: 40px;
 
     .section-btn {
-      height: 60px;
+      height: 40px;
       display: flex;
       justify-content: center;
-      align-items: center;
       font-weight: 500;
       cursor: pointer;
     }

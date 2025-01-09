@@ -1,0 +1,102 @@
+.list-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px 40px;
+
+  .states-section {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+
+    .state-btn {
+      font-size: 14px;
+      border-radius: 5px;
+      color: white;
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+
+    .all-state {
+      border: 1.5px solid #7487eb;
+      color: #7487eb;
+    }
+
+    .pending-state {
+      background-color: #7487eb;
+    }
+
+    .process-state {
+      background-color: #fe7e21;
+    }
+
+    .finish-state {
+      background-color: #48d0d0;
+    }
+
+    .other-state {
+      background-color: #eceef0;
+      color: #8d8d8d;
+    }
+  }
+
+  .task-section {
+    background-color: rgba(236, 238, 240, 0.7);
+    border-radius: 10px;
+    height: max-content;
+    padding: 30px 20px;
+
+    .task-box {
+      border-radius: 10px;
+      padding: 5px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: white;
+      height: 75px;
+      box-shadow: 0px 1px 4px rgba(106, 106, 106, 0.25);
+
+      .task-title {
+        font-size: 16px;
+      }
+
+      .actions-section {
+        display: flex;
+        align-items: center;
+        gap: 30px;
+
+        .state-box {
+          font-size: 13px;
+          color: white;
+          background-color: #7487eb;
+          padding: 5px 15px;
+          border-radius: 5px;
+        }
+
+        .actions-box {
+          display: flex;
+          flex-direction: column;
+          gap: 20px;
+
+          .options-icon {
+            transform: rotate(90deg);
+            width: 30px;
+            margin-left: auto;
+            height: 30px;
+
+            img {
+              height: inherit;
+              width: inherit;
+              cursor: pointer;
+            }
+          }
+
+          .task-date {
+            font-size: 14px;
+            color: #bdbdbd;
+          }
+        }
+      }
+    }
+  }
+}
