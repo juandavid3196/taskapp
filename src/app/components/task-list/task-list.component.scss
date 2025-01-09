@@ -49,6 +49,8 @@
     flex-direction: column;
     gap: 20px;
     flex-grow: 1;
+    max-height: -webkit-fill-available;
+    overflow-y: auto;
 
     .task-box {
       border-radius: 10px;
@@ -145,5 +147,14 @@
         }
       }
     }
+  }
+  .task-section::-webkit-scrollbar {
+    width: 9.5px;
+    background-color: #ececec;
+  }
+
+  .task-section::-webkit-scrollbar-thumb {
+    background-color: #9b9b9b;
+    border-radius: 3px;
   }
 }

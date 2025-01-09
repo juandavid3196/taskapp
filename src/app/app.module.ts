@@ -12,6 +12,7 @@ import { DragAndDropDirective } from './directives/drag-and-drop.directive';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TaskFilterPipe } from './pipes/task-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     StateManagerComponent,
     HeaderComponent,
     DragAndDropDirective,
+    TaskFilterPipe,
   ],
   imports: [
     BrowserModule,

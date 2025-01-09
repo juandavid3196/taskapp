@@ -7,13 +7,31 @@
       </div>
       <span class="state-number"> 3/6 </span>
     </div>
-    <div class="cards-container">
-      <div class="card">
-        <span class="options-icon">
+    <div
+      class="cards-container"
+      (dragover)="onDragOver($event)"
+      (drop)="onDrop($event, 'Pendiente')"
+    >
+      <div
+        class="card"
+        draggable="true"
+        *ngFor="let task of tasks | taskFilter : 'Pendiente'"
+        (dragstart)="onDragStart(task)"
+      >
+        <span class="options-icon" (click)="onActionsMenu(task)">
           <img src="assets/icons/options-icon.svg" alt="" />
         </span>
-        <div class="card-title">Texto por defecto</div>
-        <span class="task-date">24/12/2024</span>
+        <div
+          class="actions-window"
+          *ngIf="taskSelected?.id === task.id && openActionsMenu"
+        >
+          <span class="action-item" (click)="onUpdate(task)">Editar</span>
+          <span class="action-item" (click)="onEliminateTask(task)"
+            >Eliminar</span
+          >
+        </div>
+        <div class="card-title">{{ task.title }}</div>
+        <span class="task-date">{{ task.date_creation }}</span>
       </div>
     </div>
   </div>
@@ -30,15 +48,31 @@
         2/6
       </span>
     </div>
-    <div class="cards-container">
-      <div class="card">
-        <div class="card-title">Texto por defecto</div>
-        <div class="actions-box">
-          <span class="options-icon">
-            <img src="assets/icons/options-icon.svg" alt="" />
-          </span>
-          <span class="task-date">24/12/2024</span>
+    <div
+      class="cards-container"
+      (dragover)="onDragOver($event)"
+      (drop)="onDrop($event, 'En progreso')"
+    >
+      <div
+        class="card"
+        draggable="true"
+        *ngFor="let task of tasks | taskFilter : 'En progreso'"
+        (dragstart)="onDragStart(task)"
+      >
+        <span class="options-icon" (click)="onActionsMenu(task)">
+          <img src="assets/icons/options-icon.svg" alt="" />
+        </span>
+        <div
+          class="actions-window"
+          *ngIf="taskSelected?.id === task.id && openActionsMenu"
+        >
+          <span class="action-item" (click)="onUpdate(task)">Editar</span>
+          <span class="action-item" (click)="onEliminateTask(task)"
+            >Eliminar</span
+          >
         </div>
+        <div class="card-title">{{ task.title }}</div>
+        <span class="task-date">{{ task.date_creation }}</span>
       </div>
     </div>
   </div>
@@ -55,15 +89,31 @@
         1/6
       </span>
     </div>
-    <div class="cards-container">
-      <div class="card">
-        <div class="card-title">Texto por defecto</div>
-        <div class="actions-box">
-          <span class="options-icon">
-            <img src="assets/icons/options-icon.svg" alt="" />
-          </span>
-          <span class="task-date">24/12/2024</span>
+    <div
+      class="cards-container"
+      (dragover)="onDragOver($event)"
+      (drop)="onDrop($event, 'Finalizado')"
+    >
+      <div
+        class="card"
+        draggable="true"
+        *ngFor="let task of tasks | taskFilter : 'Finalizado'"
+        (click)="onActionsMenu(task)"
+      >
+        <span class="options-icon" (click)="onActionsMenu(task)">
+          <img src="assets/icons/options-icon.svg" alt="" />
+        </span>
+        <div
+          class="actions-window"
+          *ngIf="taskSelected?.id === task.id && openActionsMenu"
+        >
+          <span class="action-item" (click)="onUpdate(task)">Editar</span>
+          <span class="action-item" (click)="onEliminateTask(task)"
+            >Eliminar</span
+          >
         </div>
+        <div class="card-title">{{ task.title }}</div>
+        <span class="task-date">{{ task.date_creation }}</span>
       </div>
     </div>
   </div>

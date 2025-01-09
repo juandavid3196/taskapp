@@ -5,7 +5,7 @@
         <mat-icon class="btn-close" (click)="onClose()">close</mat-icon>
       </span>
       <span class="form-title">{{ update ? "Editar" : "Crear" }} tarea</span>
-      <span class="date-field">{{ getCurrentDate() }}</span>
+      <span class="date-field" *ngIf="!update">{{ getCurrentDate() }}</span>
     </div>
     <div class="main-section">
       <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
