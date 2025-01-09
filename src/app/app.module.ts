@@ -10,6 +10,8 @@ import { StateManagerComponent } from './components/state-manager/state-manager.
 import { HeaderComponent } from './components/header/header.component';
 import { DragAndDropDirective } from './directives/drag-and-drop.directive';
 import { MatIconModule } from '@angular/material/icon';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,13 @@ import { MatIconModule } from '@angular/material/icon';
     HeaderComponent,
     DragAndDropDirective,
   ],
-  imports: [BrowserModule, AppRoutingModule, MatIconModule],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    MatIconModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

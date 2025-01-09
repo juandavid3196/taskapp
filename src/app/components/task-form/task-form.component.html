@@ -1,1 +1,29 @@
-<p>task-form works!</p>
+<div class="form-container {{ close ? 'close' : '' }}">
+  <div class="form-container-box {{ close ? 'close' : '' }}">
+    <div class="top-section">
+      <span class="close-circle">
+        <mat-icon class="btn-close" (click)="onClose()">close</mat-icon>
+      </span>
+      <span class="form-title">Crear tarea</span>
+      <span class="date-field">{{ getCurrentDate() }}</span>
+    </div>
+    <div class="main-section">
+      <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
+        <div class="form-box">
+          <label for="title">Titulo</label>
+          <textarea name="title" formControlName="title" rows="12"></textarea>
+          <span class="error-message" *ngIf="errorMessage"
+            ><mat-icon class="error-icon">error</mat-icon>Debe añadir un titulo
+            para crear la tarea</span
+          >
+        </div>
+        <div class="btns-section">
+          <button class="btn btn-cancel" (click)="closeWindow($event)">
+            Cancelar
+          </button>
+          <button class="btn btn-add" type="submit">Crear</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
