@@ -6,5 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent {
-  openTaskForm: boolean = true;
+  openTaskForm: boolean = false;
+  openStateManager: boolean = false;
 }

@@ -1,0 +1,274 @@
+.form-container {
+  position: fixed;
+  background: rgba($color: #d9d9d9, $alpha: 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  animation: fadeIn 0.5s ease forwards;
+  backdrop-filter: blur(2px);
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+
+    to {
+      opacity: 1;
+    }
+  }
+
+  .form-container-box {
+    width: 400px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    opacity: 0;
+    z-index: 1200;
+    transition: opacity 0.5s ease-in-out;
+    animation: fadeIn 0.5s ease forwards;
+    font-family: "Poppins";
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
+    }
+
+    .top-section {
+      border-bottom: 0.5px solid #d3d3d3;
+      padding: 20px 20px 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+      position: relative;
+
+      .form-title {
+        color: black;
+        font-size: 16px;
+        font-weight: 400;
+      }
+
+      .close-circle {
+        height: 30px;
+        width: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #f5f5f5;
+        border-radius: 50%;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+
+        .btn-close {
+          color: #747474;
+          cursor: pointer;
+        }
+      }
+
+      .close-circle:hover {
+        background-color: #ebeaea;
+        .btn-close {
+          color: #606060;
+          cursor: pointer;
+        }
+      }
+    }
+
+    .main-section {
+      padding: 40px 30px 25px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+
+      .form-section {
+        form {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 15px;
+
+          .form-box {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            flex: max-content;
+
+            input {
+              border-radius: 10px;
+              height: 35px;
+              border: 0.5px solid #d3d3d3;
+              padding-left: 5px;
+              font-weight: 400;
+              font-size: 14px;
+              font-family: "Poppins";
+            }
+
+            input:focus {
+              outline: none;
+              border: 0.2px solid #7487eb;
+            }
+
+            .error-message {
+              display: flex;
+              align-items: center;
+              color: #de1717e0;
+
+              .error-icon {
+                font-size: 20px;
+              }
+            }
+          }
+
+          .btn {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-radius: 10px;
+            padding: 8px 25px;
+            font-size: 13px;
+            font-weight: 400;
+            color: white;
+            background-color: #7487eb;
+            cursor: pointer;
+            border-style: none;
+            font-family: "Poppins";
+          }
+
+          .btn-add:hover {
+            background-color: #5f6cc1;
+            transition: background-color 0.3s ease-in-out;
+          }
+
+          .cancel-btn {
+            border-radius: 50%;
+            height: 30px;
+            width: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 0.5px solid rgb(255, 69, 69);
+            cursor: pointer;
+
+            .mat-icon {
+              color: rgb(255, 69, 69);
+            }
+          }
+
+          .cancel-btn:hover {
+            transform: scale(1.1);
+
+            .mat-icon {
+              color: rgb(251, 46, 46);
+            }
+          }
+        }
+      }
+
+      .states-container {
+        border-radius: 10px;
+        background-color: #f4f4f4;
+        padding: 10px 5px;
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+        max-height: 200px;
+
+        .state-box {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 0 15px;
+          border-radius: 10px;
+          height: 35px;
+          background-color: white;
+          box-shadow: 0px 1px 4px rgba(106, 106, 106, 0.25);
+
+          .state-title {
+            font-size: 13px;
+          }
+
+          .state-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+
+            .action-box {
+              border-radius: 50%;
+              height: 25px;
+              width: 25px;
+              border: 0.5px solid #d3d3d3;
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              cursor: pointer;
+            }
+
+            .edit-btn:hover {
+              border: 1px solid #7487eb;
+              transform: scale(1.1);
+              img {
+                filter: brightness(0) saturate(100%) invert(55%) sepia(83%)
+                  saturate(2132%) hue-rotate(205deg) brightness(94%)
+                  contrast(95%);
+              }
+            }
+
+            .delete-btn:hover {
+              border: 1px solid rgb(255, 69, 69);
+              transform: scale(1.1);
+              img {
+                filter: brightness(0) saturate(100%) invert(66%) sepia(60%)
+                  saturate(6800%) hue-rotate(333deg) brightness(100%)
+                  contrast(102%);
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .form-container-box.close {
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+    animation: fadeoff 0.5s ease forwards;
+
+    @keyframes fadeoff {
+      from {
+        opacity: 1;
+      }
+
+      to {
+        opacity: 0;
+      }
+    }
+  }
+}
+
+.form-container.close {
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
+  animation: fadeoff 0.5s ease forwards;
+
+  @keyframes fadeoff {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+}
