@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import {
   FormBuilder,
   FormGroup,
@@ -7,8 +7,8 @@ import {
   ValidationErrors,
   ValidatorFn,
 } from '@angular/forms';
-import { v4 as uuidv4 } from 'uuid';
-import { format } from 'date-fns';
+import { Task } from 'src/app/models/task.model';
+import { TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-task-form',
@@ -19,20 +19,25 @@ export class TaskFormComponent {
   close: boolean = false;
   errorMessage: boolean = false;
   @Output() formClose = new EventEmitter<void>();
+  @Input() update?: boolean;
   taskForm: FormGroup;
+  taskId: string = '';
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private taskService: TaskService) {
     this.taskForm = this.fb.group({
-      id: uuidv4(),
       title: ['', [Validators.required, this.maxLengthValidator(80)]],
-      date_creation: this.formatDate(),
-      state: 'Pendiente',
     });
   }
 
-  formatDate(): string {
-    const date = new Date();
-    return format(date, 'dd/MM/yyyy');
+  ngOnInit(): void {
+    console.log(this.update);
+    this.checkUptade();
+  }
+
+  checkUptade(): void {
+    if (this.update) {
+      this.onUpdateTask(this.taskService.getTasktoUpdate());
+    }
   }
 
   maxLengthValidator(maxLength: number): ValidatorFn {
@@ -90,10 +95,34 @@ export class TaskFormComponent {
     }, 500);
   }
 
+  cleanVariables(): void {
+    this.update = false;
+    this.taskForm.patchValue({
+      title: '',
+    });
+    this.taskId = '';
+    this.errorMessage = false;
+  }
+
+  onUpdateTask(task: Task): void {
+    this.taskId = task.id;
+    this.taskForm.patchValue({
+      title: task.title,
+    });
+  }
+
   onSubmit(): void {
     if (this.taskForm.valid) {
       try {
-        console.log(this.taskForm.value);
+        if (this.update) {
+          this.taskService.updateTask(
+            this.taskId,
+            this.taskForm.get('title')?.value
+          );
+        } else {
+          this.taskService.addTask(this.taskForm.get('title')?.value);
+        }
+        this.cleanVariables();
       } catch (error) {
         console.error('Error creating task', error);
       } finally {

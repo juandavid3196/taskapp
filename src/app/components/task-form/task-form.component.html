@@ -4,7 +4,7 @@
       <span class="close-circle">
         <mat-icon class="btn-close" (click)="onClose()">close</mat-icon>
       </span>
-      <span class="form-title">Crear tarea</span>
+      <span class="form-title">{{ update ? "Editar" : "Crear" }} tarea</span>
       <span class="date-field">{{ getCurrentDate() }}</span>
     </div>
     <div class="main-section">
@@ -25,14 +25,16 @@
             *ngIf="taskForm.get('title')?.errors?.['maxLength']"
           >
             <mat-icon class="error-icon">error</mat-icon> El estado no puede
-            exceder los 20 caracteres.
+            exceder los 80 caracteres.
           </div>
         </div>
         <div class="btns-section">
           <button class="btn btn-cancel" (click)="closeWindow($event)">
             Cancelar
           </button>
-          <button class="btn btn-add" type="submit">Crear</button>
+          <button class="btn btn-add" type="submit">
+            {{ update ? "Editar" : "Crear" }}
+          </button>
         </div>
       </form>
     </div>

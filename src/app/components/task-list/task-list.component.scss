@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 20px;
   padding: 20px 40px;
+  height: calc(100vh - 125px);
 
   .states-section {
     display: flex;
@@ -43,8 +44,11 @@
   .task-section {
     background-color: rgba(236, 238, 240, 0.7);
     border-radius: 10px;
-    height: max-content;
     padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    flex-grow: 1;
 
     .task-box {
       border-radius: 10px;
@@ -55,6 +59,7 @@
       background-color: white;
       height: 75px;
       box-shadow: 0px 1px 4px rgba(106, 106, 106, 0.25);
+      position: relative;
 
       .task-title {
         font-size: 16px;
@@ -95,6 +100,48 @@
             font-size: 14px;
             color: #bdbdbd;
           }
+        }
+      }
+
+      .actions-window {
+        top: 10px;
+        right: 40px;
+        font-family: "Poppins";
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        font-size: 13px;
+        border-radius: 10px;
+        box-shadow: 0px 1px 4px rgba(106, 106, 106, 0.25);
+        background-color: white;
+        z-index: 500;
+        overflow: hidden;
+
+        .action-item {
+          padding: 7px 12px;
+          border-bottom: 1px solid #d3d3d3;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          cursor: pointer;
+        }
+
+        .action-item:hover {
+          background-color: #7487eb;
+          color: white;
+        }
+
+        .action-state {
+          border-radius: 7px;
+          background-color: #7487eb;
+          color: white;
+          padding: 3px 10px;
+          margin: 8px;
+          cursor: pointer;
+        }
+
+        .action-state:hover {
+          transform: scale(1.1);
         }
       }
     }

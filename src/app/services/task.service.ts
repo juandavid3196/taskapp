@@ -10,6 +10,7 @@ import { format } from 'date-fns';
 export class TaskService {
   private storageKey = 'tasks';
   private tasks$: BehaviorSubject<Task[]>;
+  private taskToUpdate?: Task;
 
   constructor() {
     const initialTasks = JSON.parse(
@@ -38,9 +39,24 @@ export class TaskService {
     this.updateStorage(updatedTasks);
   }
 
-  updateTask(id: string, title: string, state: string): void {
+  setTasktoUpdate(task: Task): void {
+    this.taskToUpdate = task;
+  }
+
+  getTasktoUpdate(): any {
+    return this.taskToUpdate;
+  }
+
+  updateTask(id: string, title: string): void {
     const updatedTasks = this.tasks$.value.map((task) =>
-      task.id === id ? { ...task, title, state } : task
+      task.id === id ? { ...task, title } : task
+    );
+    this.updateStorage(updatedTasks);
+  }
+
+  updateState(id: string, state: string): void {
+    const updatedTasks = this.tasks$.value.map((task) =>
+      task.id === id ? { ...task, state } : task
     );
     this.updateStorage(updatedTasks);
   }

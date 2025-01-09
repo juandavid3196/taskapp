@@ -5,17 +5,27 @@
     <span class="state-btn process-state">En Proceso</span>
     <span class="state-btn finish-state">Finalizado</span>
   </div>
-  <div class="task-section">
-    <div class="task-box">
-      <span class="task-title"> titulo </span>
+  <div class="task-section" *ngIf="tasks.length > 0">
+    <div class="task-box" *ngFor="let task of tasks">
+      <span class="task-title"> {{ task.title }}</span>
       <div class="actions-section">
-        <span class="state-box">Pendiente</span>
+        <span class="state-box">{{ task.state }}</span>
         <div class="actions-box">
-          <span class="options-icon">
+          <span class="options-icon" (click)="onActionsMenu(task)">
             <img src="assets/icons/options-icon.svg" alt="" />
           </span>
-          <span class="task-date">25/12/2024</span>
+          <span class="task-date">{{ task.date_creation }}</span>
         </div>
+      </div>
+      <div
+        class="actions-window"
+        *ngIf="taskSelected?.id === task.id && openActionsMenu"
+      >
+        <span class="action-item" (click)="onUpdate(task)">Editar</span>
+        <span class="action-item" (click)="onEliminateTask(task)"
+          >Eliminar</span
+        >
+        <span class="action-state">Pendiente</span>
       </div>
     </div>
   </div>

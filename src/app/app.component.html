@@ -1,5 +1,10 @@
 <div class="container">
+  <app-task-form
+    *ngIf="openTaskForm"
+    [update]="openTaskForm"
+    (formClose)="onTaskForm()"
+  ></app-task-form>
   <app-header></app-header>
-  <!-- <app-task-list></app-task-list> -->
-  <app-task-board></app-task-board>
+  <app-task-list (openTaskForm)="onTaskForm()"></app-task-list>
+  <!-- <app-task-board></app-task-board> -->
 </div>
