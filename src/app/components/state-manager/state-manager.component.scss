@@ -174,6 +174,15 @@
             }
           }
         }
+
+        .field-error {
+          display: flex;
+          align-items: center;
+          gap: 10px;
+          padding: 7px 0;
+          font-size: 14px;
+          color: rgb(251, 46, 46);
+        }
       }
 
       .states-container {

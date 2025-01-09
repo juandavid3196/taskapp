@@ -1,5 +1,12 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  AbstractControl,
+  ValidationErrors,
+  ValidatorFn,
+} from '@angular/forms';
 import { v4 as uuidv4 } from 'uuid';
 import { format } from 'date-fns';
 
@@ -17,7 +24,7 @@ export class TaskFormComponent {
   constructor(private fb: FormBuilder) {
     this.taskForm = this.fb.group({
       id: uuidv4(),
-      title: ['', Validators.required], // falta limite de campos
+      title: ['', [Validators.required, this.maxLengthValidator(80)]],
       date_creation: this.formatDate(),
       state: 'Pendiente',
     });
@@ -26,6 +33,13 @@ export class TaskFormComponent {
   formatDate(): string {
     const date = new Date();
     return format(date, 'dd/MM/yyyy');
+  }
+
+  maxLengthValidator(maxLength: number): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value;
+      return value && value.length > maxLength ? { maxLength: true } : null;
+    };
   }
 
   getCurrentDate(): string {
@@ -79,6 +93,7 @@ export class TaskFormComponent {
   onSubmit(): void {
     if (this.taskForm.valid) {
       try {
+        console.log(this.taskForm.value);
       } catch (error) {
         console.error('Error creating task', error);
       } finally {

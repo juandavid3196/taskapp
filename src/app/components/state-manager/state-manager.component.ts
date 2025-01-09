@@ -1,7 +1,14 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { v4 as uuidv4 } from 'uuid';
-import { format } from 'date-fns';
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  AbstractControl,
+  ValidationErrors,
+  ValidatorFn,
+} from '@angular/forms';
+import { State } from 'src/app/models/state.model';
+import { StateService } from 'src/app/services/state.service';
 
 @Component({
   selector: 'app-state-manager',
@@ -13,18 +20,28 @@ export class StateManagerComponent {
   errorMessage: boolean = false;
   @Output() formClose = new EventEmitter<void>();
   stateForm: FormGroup;
+  states: State[] = [];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private stateService: StateService) {
     this.stateForm = this.fb.group({
-      id: uuidv4(),
-      title: ['', Validators.required], // falta limite de campos
-      date_creation: this.formatDate(),
+      title: ['', [Validators.required, this.maxLengthValidator(20)]],
     });
   }
 
-  formatDate(): string {
-    const date = new Date();
-    return format(date, 'dd/MM/yyyy');
+  ngOnInit(): void {
+    this.getStates();
+  }
+
+  getStates(): void {
+    this.stateService.getStates().subscribe((response) => {
+      this.states = response;
+    });
+  }
+  maxLengthValidator(maxLength: number): ValidatorFn {
+    return (control: AbstractControl): ValidationErrors | null => {
+      const value = control.value;
+      return value && value.length > maxLength ? { maxLength: true } : null;
+    };
   }
 
   closeWindow(event: Event): void {
@@ -42,10 +59,10 @@ export class StateManagerComponent {
   onSubmit(): void {
     if (this.stateForm.valid) {
       try {
+        console.log(this.stateForm.value);
+        this.stateService.addState(this.stateForm.get('title')?.value);
       } catch (error) {
         console.error('Error creating task', error);
-      } finally {
-        this.onClose();
       }
     } else {
       this.errorMessage = !this.errorMessage;

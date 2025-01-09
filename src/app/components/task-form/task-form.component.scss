@@ -126,14 +126,13 @@
             border: 0.2px solid #7487eb;
           }
 
-          .error-message {
+          .field-error {
             display: flex;
             align-items: center;
-            color: #de1717e0;
-
-            .error-icon {
-              font-size: 20px;
-            }
+            gap: 10px;
+            padding: 7px 0;
+            font-size: 14px;
+            color: rgb(251, 46, 46);
           }
         }
 

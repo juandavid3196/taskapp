@@ -1,5 +1,8 @@
-<app-task-form *ngIf="openTaskForm"></app-task-form>
-<app-state-manager *ngIf="openStateManager"></app-state-manager>
+<app-task-form *ngIf="openTaskForm" (formClose)="onTaskForm()"></app-task-form>
+<app-state-manager
+  *ngIf="openStateManager"
+  (formClose)="onStateManager()"
+></app-state-manager>
 
 <div class="header-container">
   <div class="header-top">
@@ -9,11 +12,11 @@
       <mat-icon class="search-icon">search</mat-icon>
     </div>
     <div class="btn-section">
-      <div class="btn btn-add">
+      <div class="btn btn-add" (click)="onTaskForm()">
         <mat-icon>add_circle</mat-icon>
         <span>Añadir tarea</span>
       </div>
-      <div class="btn btn-state">
+      <div class="btn btn-state" (click)="onStateManager()">
         <img src="assets/icons/state-icon.svg" class="state-icon" alt="" />
         <span>Gestionar estados</span>
       </div>

@@ -11,20 +11,31 @@
         <form [formGroup]="stateForm" (ngSubmit)="onSubmit()">
           <div class="form-box">
             <input type="text" name="title" formControlName="title" />
-            <span class="error-message" *ngIf="errorMessage"
-              ><mat-icon class="error-icon">error</mat-icon>Debe añadir un
-              titulo para crear la tarea</span
-            >
           </div>
           <button class="btn btn-add" type="submit">Agregar</button>
           <span class="cancel-btn">
             <mat-icon>close</mat-icon>
           </span>
         </form>
+        <div
+          class="field-error"
+          *ngIf="stateForm.get('title')?.errors?.['required'] && errorMessage"
+        >
+          <mat-icon class="error-icon">error</mat-icon>
+          Este campo es obligatorio.
+        </div>
+
+        <div
+          class="field-error"
+          *ngIf="stateForm.get('title')?.errors?.['maxLength']"
+        >
+          <mat-icon class="error-icon">error</mat-icon> El estado no puede
+          exceder los 20 caracteres.
+        </div>
       </div>
       <div class="states-container">
-        <div class="state-box">
-          <span class="state-title">Archivado</span>
+        <div class="state-box" *ngFor="let state of states">
+          <span class="state-title">{{ state.title }}</span>
           <div class="state-actions">
             <span class="action-box edit-btn">
               <img src="assets/icons/edit-icon.svg" alt="" />

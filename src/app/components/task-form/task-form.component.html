@@ -12,10 +12,21 @@
         <div class="form-box">
           <label for="title">Titulo</label>
           <textarea name="title" formControlName="title" rows="12"></textarea>
-          <span class="error-message" *ngIf="errorMessage"
-            ><mat-icon class="error-icon">error</mat-icon>Debe añadir un titulo
-            para crear la tarea</span
+          <div
+            class="field-error"
+            *ngIf="taskForm.get('title')?.errors?.['required'] && errorMessage"
           >
+            <mat-icon class="error-icon">error</mat-icon>
+            Este campo es obligatorio.
+          </div>
+
+          <div
+            class="field-error"
+            *ngIf="taskForm.get('title')?.errors?.['maxLength']"
+          >
+            <mat-icon class="error-icon">error</mat-icon> El estado no puede
+            exceder los 20 caracteres.
+          </div>
         </div>
         <div class="btns-section">
           <button class="btn btn-cancel" (click)="closeWindow($event)">

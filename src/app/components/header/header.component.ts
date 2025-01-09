@@ -8,4 +8,12 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
   openTaskForm: boolean = false;
   openStateManager: boolean = false;
+
+  onTaskForm(): void {
+    this.openTaskForm = !this.openTaskForm;
+  }
+
+  onStateManager(): void {
+    this.openStateManager = !this.openStateManager;
+  }
 }
