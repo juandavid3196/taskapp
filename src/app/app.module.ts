@@ -8,7 +8,6 @@ import { TaskListComponent } from './components/task-list/task-list.component';
 import { TaskBoardComponent } from './components/task-board/task-board.component';
 import { StateManagerComponent } from './components/state-manager/state-manager.component';
 import { HeaderComponent } from './components/header/header.component';
-import { DragAndDropDirective } from './directives/drag-and-drop.directive';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -22,7 +21,6 @@ import { TaskFilterPipe } from './pipes/task-filter.pipe';
     TaskBoardComponent,
     StateManagerComponent,
     HeaderComponent,
-    DragAndDropDirective,
     TaskFilterPipe,
   ],
   imports: [
