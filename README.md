@@ -50,7 +50,7 @@ https://drive.google.com/file/d/1QrG7pM2Gd3-Z7Sg6g6982OTeVmncIJIP/view?usp=drive
 * tslib: Utilidades runtime para proyectos TypeScript que reducen el tamaño del código generado.
 * uuid: Generador de identificadores únicos universales (UUIDs).
 
-## Desciciones Tecnicas
+## Decisiones Tecnicas
 
 * Componentización: Dividida en vistas y componentes como el header, formularios y vistas de tareas para facilitar el mantenimiento.
 * Gestión de estados: Implementada con servicios para mantener sincronización entre componentes.
