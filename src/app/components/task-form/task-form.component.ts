@@ -50,7 +50,6 @@ export class TaskFormComponent {
   getCurrentDate(): string {
     const date = new Date();
 
-    // Lista de días y meses en español
     const days = [
       'Domingo',
       'Lunes',
@@ -75,10 +74,10 @@ export class TaskFormComponent {
       'Diciembre',
     ];
 
-    const dayName = days[date.getDay()]; // Nombre del día
-    const day = date.getDate(); // Día del mes
-    const monthName = months[date.getMonth()]; // Nombre del mes
-    const year = date.getFullYear(); // Año
+    const dayName = days[date.getDay()];
+    const day = date.getDate();
+    const monthName = months[date.getMonth()];
+    const year = date.getFullYear();
 
     return `${dayName}, ${day} de ${monthName} de ${year}`;
   }

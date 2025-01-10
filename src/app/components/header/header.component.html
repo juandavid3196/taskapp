@@ -23,7 +23,15 @@
     </div>
   </div>
   <div class="header-buttom">
-    <span class="section-btn">Tabla</span>
-    <span class="section-btn">Tarjetas</span>
+    <span
+      class="section-btn {{ !btnSection ? 'section-selected' : '' }} "
+      (click)="changeSection()"
+      >Tabla</span
+    >
+    <span
+      class="section-btn {{ btnSection ? 'section-selected' : '' }}"
+      (click)="changeSection()"
+      >Tarjetas</span
+    >
   </div>
 </div>

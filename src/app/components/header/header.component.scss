@@ -11,6 +11,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 20px;
+    flex-wrap: wrap;
 
     .app-title {
       font-size: 24px;
@@ -106,6 +107,46 @@
       justify-content: center;
       font-weight: 500;
       cursor: pointer;
+    }
+
+    .section-selected {
+      border-bottom: 3px solid #7487eb;
+    }
+  }
+}
+
+/* Dispositivos pequeños (smartphones en retrato) */
+@media screen and (max-width: 470px) {
+  .header-container {
+    height: auto;
+    .header-top {
+      gap: 15px;
+      .app-title {
+        margin-right: 20px;
+      }
+      .btn-section {
+        margin-left: auto;
+        flex-direction: column;
+        width: -webkit-fill-available;
+        gap: 15px;
+        .btn {
+          width: auto;
+          width: -webkit-fill-available;
+        }
+      }
+    }
+  }
+}
+
+/* Dispositivos medianos (smartphones en paisaje o tablets pequeñas) */
+@media screen and (max-width: 840px) {
+  .header-container {
+    height: auto;
+    .header-top {
+      gap: 10px;
+      .btn-section {
+        margin-left: auto;
+      }
     }
   }
 }

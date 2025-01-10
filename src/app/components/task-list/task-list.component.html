@@ -1,15 +1,26 @@
 <div class="list-container">
   <div class="states-section">
-    <span class="state-btn all-state">Todas</span>
-    <span class="state-btn pending-state">Pendiente</span>
-    <span class="state-btn process-state">En Proceso</span>
-    <span class="state-btn finish-state">Finalizado</span>
+    <span
+      *ngFor="let state of states"
+      class="state-btn"
+      [style.backgroundColor]="filterColor(state)"
+      (click)="setFilterState(state === 'Todos' ? '' : state)"
+      >{{ state }}</span
+    >
   </div>
   <div class="task-section" *ngIf="tasks.length > 0">
-    <div class="task-box" *ngFor="let task of tasks">
+    <div
+      class="task-box"
+      *ngFor="let task of tasks | taskFilter : taskFilterState"
+    >
       <span class="task-title"> {{ task.title }}</span>
       <div class="actions-section">
-        <span class="state-box">{{ task.state }}</span>
+        <span
+          class="state-box"
+          [style.backgroundColor]="filterColor(task.state)"
+        >
+          {{ task.state }}
+        </span>
         <div class="actions-box">
           <span class="options-icon" (click)="onActionsMenu(task)">
             <img src="assets/icons/options-icon.svg" alt="" />
@@ -25,7 +36,13 @@
         <span class="action-item" (click)="onEliminateTask(task)"
           >Eliminar</span
         >
-        <span class="action-state">Pendiente</span>
+        <span
+          class="action-state"
+          [style.backgroundColor]="filterColorNext(task.state)"
+          *ngIf="nextState(task.state) != ''"
+          (click)="changeState(task.id, nextState(task.state))"
+          >{{ nextState(task.state) }}</span
+        >
       </div>
     </div>
   </div>

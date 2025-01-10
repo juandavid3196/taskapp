@@ -4,7 +4,13 @@
     [update]="openTaskForm"
     (formClose)="onTaskForm()"
   ></app-task-form>
-  <app-header></app-header>
-  <!-- <app-task-list (openTaskForm)="onTaskForm()"></app-task-list> -->
-  <app-task-board (openTaskForm)="onTaskForm()"></app-task-board>
+  <app-header (cardSection)="onChangeSection()"></app-header>
+  <app-task-list
+    (openTaskForm)="onTaskForm()"
+    *ngIf="!changeSection"
+  ></app-task-list>
+  <app-task-board
+    (openTaskForm)="onTaskForm()"
+    *ngIf="changeSection"
+  ></app-task-board>
 </div>

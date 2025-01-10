@@ -98,7 +98,7 @@
         class="card"
         draggable="true"
         *ngFor="let task of tasks | taskFilter : 'Finalizado'"
-        (click)="onActionsMenu(task)"
+        (dragstart)="onDragStart(task)"
       >
         <span class="options-icon" (click)="onActionsMenu(task)">
           <img src="assets/icons/options-icon.svg" alt="" />

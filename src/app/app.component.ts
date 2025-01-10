@@ -9,9 +9,14 @@ import { Task } from './models/task.model';
 export class AppComponent {
   title = 'taskapp';
   openTaskForm: boolean = false;
+  changeSection: boolean = false;
 
   onTaskForm(): void {
     this.openTaskForm = !this.openTaskForm;
     console.log(this.openTaskForm);
+  }
+
+  onChangeSection(): void {
+    this.changeSection = !this.changeSection;
   }
 }

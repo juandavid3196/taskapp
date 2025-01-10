@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 import { State } from 'src/app/models/state.model';
 import { StateService } from 'src/app/services/state.service';
+import { TaskService } from 'src/app/services/task.service';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -25,7 +26,11 @@ export class StateManagerComponent {
   update: boolean = false;
   stateId: string = '';
 
-  constructor(private fb: FormBuilder, private stateService: StateService) {
+  constructor(
+    private fb: FormBuilder,
+    private stateService: StateService,
+    private taskService: TaskService
+  ) {
     this.stateForm = this.fb.group({
       title: ['', [Validators.required, this.maxLengthValidator(20)]],
     });
@@ -47,6 +52,18 @@ export class StateManagerComponent {
     };
   }
 
+  verifyStates(state: string): boolean {
+    let task: any[] = [];
+    this.taskService.getTasks().subscribe((response) => {
+      task = response;
+    });
+    const res = task.find((e) => e.state === state);
+    if (res) {
+      return true;
+    }
+    return false;
+  }
+
   closeWindow(event: Event): void {
     event.preventDefault();
     this.onClose();
@@ -62,6 +79,14 @@ export class StateManagerComponent {
   }
 
   onEliminateState(state: State): void {
+    if (this.verifyStates(state.title)) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Advertencia',
+        text: 'Hay tareas asignadas a este estado',
+      });
+      return;
+    }
     Swal.fire({
       title: '¿Estás seguro?',
       html: `El estado ${state.title} se eliminará de manera permanente.`,

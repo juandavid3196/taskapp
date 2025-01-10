@@ -9,6 +9,7 @@
     display: flex;
     gap: 15px;
     align-items: center;
+    flex-wrap: wrap;
 
     .state-btn {
       font-size: 14px;
@@ -16,28 +17,7 @@
       color: white;
       padding: 5px 10px;
       cursor: pointer;
-    }
-
-    .all-state {
-      border: 1.5px solid #7487eb;
-      color: #7487eb;
-    }
-
-    .pending-state {
-      background-color: #7487eb;
-    }
-
-    .process-state {
-      background-color: #fe7e21;
-    }
-
-    .finish-state {
-      background-color: #48d0d0;
-    }
-
-    .other-state {
-      background-color: #eceef0;
-      color: #8d8d8d;
+      color: white;
     }
   }
 
@@ -156,5 +136,20 @@
   .task-section::-webkit-scrollbar-thumb {
     background-color: #9b9b9b;
     border-radius: 3px;
+  }
+}
+
+/* Dispositivos pequeños (smartphones en retrato) */
+@media screen and (max-width: 470px) {
+  .list-container {
+    .task-section {
+      min-width: 395px;
+      overflow-y: hidden;
+      overflow-x: hidden;
+
+      .task-box {
+        height: auto;
+      }
+    }
   }
 }

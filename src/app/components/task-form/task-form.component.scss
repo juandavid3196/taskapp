@@ -210,3 +210,11 @@
     }
   }
 }
+
+@media screen and (max-width: 470px) {
+  .form-container {
+    .form-container-box {
+      width: 90%;
+    }
+  }
+}

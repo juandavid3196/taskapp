@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
   openTaskForm: boolean = false;
   openStateManager: boolean = false;
+  btnSection: boolean = false;
+  @Output() cardSection = new EventEmitter<void>();
 
   onTaskForm(): void {
     this.openTaskForm = !this.openTaskForm;
@@ -15,5 +17,10 @@ export class HeaderComponent {
 
   onStateManager(): void {
     this.openStateManager = !this.openStateManager;
+  }
+
+  changeSection(): void {
+    this.btnSection = !this.btnSection;
+    this.cardSection.emit();
   }
 }

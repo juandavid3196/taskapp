@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
+import { State } from 'src/app/models/state.model';
 import { Task } from 'src/app/models/task.model';
+import { StateService } from 'src/app/services/state.service';
 import { TaskService } from 'src/app/services/task.service';
 import Swal from 'sweetalert2';
 
@@ -13,12 +15,25 @@ export class TaskBoardComponent {
   tasks: Task[] = [];
   taskSelected?: Task;
   @Output() openTaskForm = new EventEmitter<void>();
-  states = ['Pendiente', 'En progreso', 'Finalizado'];
+  states: string[] = [];
 
-  constructor(private taskService: TaskService) {}
+  constructor(
+    private taskService: TaskService,
+    private stateService: StateService
+  ) {}
 
   ngOnInit(): void {
     this.getTasks();
+    this.getStates();
+  }
+
+  getStates(): void {
+    this.states = ['Todos', 'Pendiente', 'En progreso', 'Finalizado'];
+    this.stateService.getStates().subscribe((response) => {
+      response.map((state) => {
+        this.states.push(state.title);
+      });
+    });
   }
 
   onEliminateTask(task: Task): void {
@@ -45,8 +60,28 @@ export class TaskBoardComponent {
 
   onDrop(e: any, state: string): void {
     e.preventDefault();
-    if (this.taskSelected)
-      this.taskService.updateState(this.taskSelected?.id, state);
+
+    if (this.nextState(state)) {
+      if (this.taskSelected)
+        this.taskService.updateState(this.taskSelected?.id, state);
+    } else {
+      return;
+    }
+  }
+
+  nextState(state: string): boolean {
+    if (!this.taskSelected) return false;
+
+    const indexTaskSelected = this.states.findIndex(
+      (e) => e === this.taskSelected?.state
+    );
+    const index = this.states.findIndex((e) => e === state);
+
+    return (
+      indexTaskSelected !== -1 &&
+      index !== -1 &&
+      indexTaskSelected + 1 === index
+    );
   }
 
   onDragOver(e: any): void {
