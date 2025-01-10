@@ -2,6 +2,8 @@
 
 Este proyecto fue generado con Angular CLI versión 16.2.14.
 
+### Vercel Link (App en linea): https://taskapp-f8yjvrg73-juandavid3196s-projects.vercel.app/ 
+
 ## Pasos para Ejecutar
 
 * Clonar el repositorio.
